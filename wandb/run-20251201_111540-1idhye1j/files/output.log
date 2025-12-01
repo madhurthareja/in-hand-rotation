@@ -1,0 +1,850 @@
+{'params': {'seed': 42, 'algo': {'name': 'a2c_continuous'}, 'model': {'name': 'continuous_a2c_logstd'}, 'network': {'name': 'actor_critic', 'separate': False, 'pointnet': 'small', 'space': {'continuous': {'mu_activation': 'None', 'sigma_activation': 'None', 'mu_init': {'name': 'default'}, 'sigma_init': {'name': 'const_initializer', 'val': 0}, 'fixed_sigma': True}}, 'mlp': {'units': [512, 256, 256], 'activation': 'elu', 'd2rl': False, 'initializer': {'name': 'default'}, 'regularizer': {'name': 'None'}}}, 'load_checkpoint': False, 'load_path': '', 'config': {'name': 'baoding', 'env_name': 'rlgpu', 'prefix': 'baodingS1.0_C0.0_M0.02025-12-01_11-15-38-83810', 'user_prefix': 'baoding', 'auto_prefix': 'S1.0_C0.0_M0.0', 'multi_gpu': False, 'ppo': True, 'mixed_precision': False, 'normalize_input': True, 'normalize_value': True, 'value_bootstrap': True, 'num_actors': 1024, 'reward_shaper': {'scale_value': 0.01}, 'normalize_advantage': True, 'gamma': 0.99, 'tau': 0.95, 'learning_rate': 0.0001, 'lr_schedule': 'adaptive', 'schedule_type': 'standard', 'kl_threshold': 0.02, 'score_to_win': 100000, 'max_epochs': 20100, 'save_best_after': 100, 'save_frequency': 100, 'print_stats': True, 'grad_norm': 1.0, 'entropy_coef': 0.0, 'truncate_grads': 'Trues', 'e_clip': 0.2, 'horizon_length': 16, 'minibatch_size': 4096, 'mini_epochs': 4, 'critic_coef': 5, 'clip_value': True, 'seq_length': 4, 'bptt_len': 16, 'bounds_loss_coef': 0.005, 'bc_loss_coef': 0.01, 'weight_decay': 0.0, 'player_collect': False, 'player': {'deterministic': True, 'games_num': 2, 'games_repeat': 1, 'desired_games': 10000, 'print_stats': True}, 'central_value_config': {'minibatch_size': 4096, 'mini_epochs': 4, 'learning_rate': 0.0005, 'lr_schedule': 'adaptive', 'schedule_type': 'standard', 'kl_threshold': 0.016, 'clip_value': True, 'normalize_input': True, 'truncate_grads': True, 'network': {'name': 'actor_critic', 'central_value': True, 'mlp': {'units': [512, 512, 256, 256], 'activation': 'elu', 'd2rl': False, 'initializer': {'name': 'default'}, 'regularizer': {'name': 'None'}}}}}}}
+self.seed = 42
+Started to train
+Adding Central Value Network
+Get Override {}
+CFG DICT {'name': 'AllegroArmMOAR', 'physics_engine': 'physx', 'env': {'objectSize': 'large', 'pc_ablation': False, 'legacy_obs': True, 'pc_mode': 'label', 'ablation_mode': 'no-pc', 'is_distillation': False, 'observation': {'obs': None, 'pointcloud': {'bound': [0.5, 10, -1, 1, 0.12, 0.8], 'numSample': 808}}, 'camera': {'pos': [0.45252319, 0.33285737, 0.5127288], 'rot': [-0.6354564, 44.3181397, -70.6868244], 'width': 96, 'height': 72, 'fov': 69.4}, 'rewardType': 'finger', 'sensor': 'thick', 'objInit': 'new', 'objSet': 'ball', 'pc_category': 'mug', 'skill_step': 500, 'spin_coef': 1.0, 'main_coef': 0.0, 'aux_coef': 0.0, 'vel_coef': -0.1, 'contact_coef': 0.0, 'torque_coef': -0.0003, 'work_coef': -0.0003, 'finger_coef': 0.1, 'handInit': 'default', 'numEnvs': 1024, 'envSpacing': 0.75, 'episodeLength': 500, 'enableDebugVis': False, 'aggregateMode': 1, 'sensorThresh': 1.0, 'sensorNoise': 0.1, 'obs_stack': 4, 'latency': 0.2, 'm_low': 0.2, 'm_up': 0.6, 'useInitRandomRotation': False, 'force_debug': False, 'numTestEnvs': 16, 'test': {'test_m_low': 0.1, 'test_m_up': 1.4}, 'robotStiffness': 3.0, 'clipObservations': 5.0, 'clipActions': 1.0, 'stiffnessScale': 1.0, 'forceLimitScale': 1.0, 'relScale': 0.2, 'useRelativeControl': True, 'usePrevTarget': False, 'dofSpeedScale': 20.0, 'actionsMovingAverage': 0.8, 'controlFrequencyInv': 6, 'startPositionNoise': 0.01, 'startRotationNoise': 0.0, 'resetPositionNoise': 0.01, 'resetRotationNoise': 0.0, 'resetDofPosRandomInterval': 0.2, 'resetDofVelRandomInterval': 0.0, 'forceScale': 2.0, 'forceProbRange': [0.2, 0.25], 'forceProbScalar': 0.25, 'forceDecay': 0.99, 'forceDecayInterval': 0.1, 'disableSet': 0, 'axis': 'z', 'distRewardScale': -3.0, 'rotRewardScale': 1.0, 'rotEps': 0.1, 'actionPenaltyScale': 0.0, 'controlPenaltyScale': 0.0, 'reachGoalBonus': 250, 'fallDistance': 0.1, 'fallPenalty': -50.0, 'objectType': 'block', 'observationType': 'full_stack_baoding', 'asymmetric_observations': True, 'successTolerance': 0.1, 'printNumSuccesses': False, 'maxConsecutiveSuccesses': 0, 'asset': {'assetFileName': 'urdf/xarm6/xarm6_allegro_left_fsr.urdf', 'assetFileNameBlock': 'urdf/objects/cube_multicolor_allegro.urdf', 'assetFileNameEgg': 'mjcf/open_ai_assets/hand/egg.xml', 'assetFileNamePen': 'mjcf/open_ai_assets/hand/pen.xml'}}, 'task': {'randomize': True, 'randomization_params': {'frequency': 1000, 'observations': {'range': [0, 0.05], 'range_correlated': [0, 0.001], 'operation': 'additive', 'distribution': 'gaussian'}, 'actions': {'range': [0.0, 0.04], 'range_correlated': [0, 0.015], 'operation': 'additive', 'distribution': 'gaussian'}, 'sim_params': {'gravity': {'range': [0, 0.3], 'operation': 'additive', 'distribution': 'gaussian'}}, 'actor_params': {'hand': {'color': False, 'dof_properties': {'stiffness': {'range': [0.75, 1.5], 'operation': 'scaling', 'distribution': 'loguniform'}, 'lower': {'range': [0, 1e-05], 'operation': 'additive', 'distribution': 'gaussian'}, 'upper': {'range': [0, 1e-05], 'operation': 'additive', 'distribution': 'gaussian'}}}}}, 'enableCameraSensors': False}, 'sim': {'dt': 0.01667, 'substeps': 2, 'up_axis': 'z', 'use_gpu_pipeline': True, 'gravity': [0.0, 0.0, -9.81], 'physx': {'num_threads': 4, 'solver_type': 1, 'use_gpu': True, 'num_position_iterations': 8, 'num_velocity_iterations': 0, 'max_gpu_contact_pairs': 8388608, 'num_subscenes': 4, 'contact_offset': 0.002, 'rest_offset': 0.0, 'bounce_threshold_velocity': 0.2, 'max_depenetration_velocity': 100.0, 'default_buffer_size_multiplier': 5.0, 'contact_collection': 2}}}
+Obs type: full_stack_baoding
+/home/madhurthareja/miniconda3/envs/robosyn/lib/python3.8/site-packages/gym/spaces/box.py:127: UserWarning: [33mWARN: Box bound precision lowered by casting to float32[0m
+  logger.warn(f"Box bound precision lowered by casting to {self.dtype}")
+ENTER ASSET CREATING!
+Num dofs:  22
+DOF_LOWER_LIMITS [0.0, 0.673, -0.91601, 3.1416, 2.263, -1.56901, -0.47, -0.196, -0.174, -0.227, 0.7, 0.3, -0.189, -0.162, -0.47, -0.196, -0.174, -0.227, -0.47, -0.196, -0.174, -0.227]
+DOF_UPPER_LIMITS [1e-05, 0.6730001, -0.916, 3.14161, 2.2631, -1.569, 0.47, 1.61, 1.709, 1.618, 1.396, 1.163, 1.644, 1.719, 0.47, 1.61, 1.709, 1.618, 0.47, 1.61, 1.709, 1.618]
+Visual observation modality exist, set enableCameraSensors to be True
+Contact Tensor Dimension torch.Size([1024, 147])
+Num dofs:  22
+Hand QPos Overriding: Idx:6 QPos: 0.0
+Hand QPos Overriding: Idx:7 QPos: 1.0
+Hand QPos Overriding: Idx:8 QPos: 0.0
+Hand QPos Overriding: Idx:9 QPos: 0.0
+Hand QPos Overriding: Idx:10 QPos: 1.3815
+Hand QPos Overriding: Idx:11 QPos: 0.0868
+Hand QPos Overriding: Idx:12 QPos: 0.1259
+Hand QPos Overriding: Idx:13 QPos: 0.0
+Hand QPos Overriding: Idx:14 QPos: 0.0048
+Hand QPos Overriding: Idx:15 QPos: 1.0
+Hand QPos Overriding: Idx:16 QPos: 0.0
+Hand QPos Overriding: Idx:17 QPos: 0.0
+Hand QPos Overriding: Idx:18 QPos: 0.0
+Hand QPos Overriding: Idx:19 QPos: 1.0
+Hand QPos Overriding: Idx:20 QPos: 0.0
+Hand QPos Overriding: Idx:21 QPos: 0.0
+Box(-1.0, 1.0, (22,), float32) Box(-inf, inf, (366,), float32) Box(-inf, inf, (204,), float32)
+SEQ_LENGTH 4
+current training device: cuda:0
+/home/madhurthareja/itachicmd/in-hand-rotation/rl_games/common/a2c_common.py:204: FutureWarning: `torch.cuda.amp.GradScaler(args...)` is deprecated. Please use `torch.amp.GradScaler('cuda', args...)` instead.
+  self.scaler = torch.cuda.amp.GradScaler(enabled=self.mixed_precision)
+build mlp: 366
+RunningMeanStd:  (1,)
+RunningMeanStd:  (366,)
+build mlp: 204
+RunningMeanStd:  (1,)
+RunningMeanStd:  (204,)
+/home/madhurthareja/itachicmd/in-hand-rotation/isaacgymenvs/tasks/allegro_arm_morb_axis.py:1632: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  env_ids_torch = torch.tensor(env_ids,  device=self.device).long()
+/home/madhurthareja/itachicmd/in-hand-rotation/isaacgymenvs/tasks/allegro_arm_morb_axis.py:870: UserWarning: Using torch.cross without specifying the dim arg is deprecated.
+Please either pass the dim explicitly or simply use torch.linalg.cross.
+The default value of dim will change to agree with that of linalg.cross in a future release. (Triggered internally at /opt/conda/conda-bld/pytorch_1724789259345/work/aten/src/ATen/native/Cross.cpp:62.)
+  last_cross = torch.cross(zero_pos, last_relative_pos)
+/home/madhurthareja/itachicmd/in-hand-rotation/rl_games/algos_torch/a2c_continuous.py:123: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=self.mixed_precision):
+fps step: 2665 fps step and policy inference: 2615 fps total: 2531 epoch: 1/20100
+fps step: 3611 fps step and policy inference: 3592 fps total: 3472 epoch: 2/20100
+fps step: 3562 fps step and policy inference: 3544 fps total: 3426 epoch: 3/20100
+fps step: 3529 fps step and policy inference: 3511 fps total: 3397 epoch: 4/20100
+fps step: 3523 fps step and policy inference: 3504 fps total: 3390 epoch: 5/20100
+fps step: 3459 fps step and policy inference: 3441 fps total: 3331 epoch: 6/20100
+fps step: 3394 fps step and policy inference: 3376 fps total: 3269 epoch: 7/20100
+fps step: 3401 fps step and policy inference: 3384 fps total: 3277 epoch: 8/20100
+fps step: 3367 fps step and policy inference: 3349 fps total: 3244 epoch: 9/20100
+fps step: 3458 fps step and policy inference: 3441 fps total: 3329 epoch: 10/20100
+fps step: 3479 fps step and policy inference: 3461 fps total: 3349 epoch: 11/20100
+fps step: 3504 fps step and policy inference: 3486 fps total: 3372 epoch: 12/20100
+fps step: 3518 fps step and policy inference: 3499 fps total: 3384 epoch: 13/20100
+fps step: 3404 fps step and policy inference: 3385 fps total: 3276 epoch: 14/20100
+fps step: 3500 fps step and policy inference: 3481 fps total: 3364 epoch: 15/20100
+fps step: 3439 fps step and policy inference: 3418 fps total: 3301 epoch: 16/20100
+fps step: 3403 fps step and policy inference: 3385 fps total: 3271 epoch: 17/20100
+fps step: 3504 fps step and policy inference: 3485 fps total: 3362 epoch: 18/20100
+fps step: 3513 fps step and policy inference: 3493 fps total: 3373 epoch: 19/20100
+fps step: 3666 fps step and policy inference: 3645 fps total: 3513 epoch: 20/20100
+fps step: 3646 fps step and policy inference: 3625 fps total: 3501 epoch: 21/20100
+fps step: 3669 fps step and policy inference: 3647 fps total: 3521 epoch: 22/20100
+fps step: 3630 fps step and policy inference: 3609 fps total: 3480 epoch: 23/20100
+fps step: 3628 fps step and policy inference: 3607 fps total: 3476 epoch: 24/20100
+fps step: 3705 fps step and policy inference: 3684 fps total: 3551 epoch: 25/20100
+fps step: 3654 fps step and policy inference: 3632 fps total: 3506 epoch: 26/20100
+fps step: 3778 fps step and policy inference: 3757 fps total: 3622 epoch: 27/20100
+fps step: 3787 fps step and policy inference: 3765 fps total: 3632 epoch: 28/20100
+fps step: 3808 fps step and policy inference: 3786 fps total: 3643 epoch: 29/20100
+fps step: 3558 fps step and policy inference: 3535 fps total: 3411 epoch: 30/20100
+fps step: 3672 fps step and policy inference: 3651 fps total: 3517 epoch: 31/20100
+fps step: 3622 fps step and policy inference: 3601 fps total: 3468 epoch: 32/20100
+fps step: 3670 fps step and policy inference: 3646 fps total: 3514 epoch: 33/20100
+fps step: 3684 fps step and policy inference: 3661 fps total: 3528 epoch: 34/20100
+fps step: 3730 fps step and policy inference: 3708 fps total: 3571 epoch: 35/20100
+fps step: 3680 fps step and policy inference: 3658 fps total: 3518 epoch: 36/20100
+fps step: 3649 fps step and policy inference: 3628 fps total: 3500 epoch: 37/20100
+fps step: 3904 fps step and policy inference: 3881 fps total: 3734 epoch: 38/20100
+fps step: 3845 fps step and policy inference: 3822 fps total: 3684 epoch: 39/20100
+fps step: 3974 fps step and policy inference: 3950 fps total: 3803 epoch: 40/20100
+fps step: 3968 fps step and policy inference: 3945 fps total: 3795 epoch: 41/20100
+fps step: 4009 fps step and policy inference: 3985 fps total: 3836 epoch: 42/20100
+fps step: 3856 fps step and policy inference: 3833 fps total: 3690 epoch: 43/20100
+fps step: 3945 fps step and policy inference: 3922 fps total: 3776 epoch: 44/20100
+fps step: 4023 fps step and policy inference: 3999 fps total: 3845 epoch: 45/20100
+fps step: 3912 fps step and policy inference: 3887 fps total: 3736 epoch: 46/20100
+fps step: 3814 fps step and policy inference: 3789 fps total: 3646 epoch: 47/20100
+fps step: 3822 fps step and policy inference: 3796 fps total: 3662 epoch: 48/20100
+fps step: 4044 fps step and policy inference: 4020 fps total: 3869 epoch: 49/20100
+fps step: 3940 fps step and policy inference: 3917 fps total: 3766 epoch: 50/20100
+fps step: 3964 fps step and policy inference: 3940 fps total: 3784 epoch: 51/20100
+fps step: 3952 fps step and policy inference: 3928 fps total: 3777 epoch: 52/20100
+fps step: 3940 fps step and policy inference: 3916 fps total: 3771 epoch: 53/20100
+fps step: 4054 fps step and policy inference: 4030 fps total: 3877 epoch: 54/20100
+fps step: 4015 fps step and policy inference: 3989 fps total: 3838 epoch: 55/20100
+fps step: 3997 fps step and policy inference: 3972 fps total: 3826 epoch: 56/20100
+fps step: 3865 fps step and policy inference: 3840 fps total: 3688 epoch: 57/20100
+fps step: 3803 fps step and policy inference: 3778 fps total: 3634 epoch: 58/20100
+fps step: 3995 fps step and policy inference: 3971 fps total: 3817 epoch: 59/20100
+fps step: 4012 fps step and policy inference: 3986 fps total: 3835 epoch: 60/20100
+fps step: 4055 fps step and policy inference: 4030 fps total: 3872 epoch: 61/20100
+fps step: 4113 fps step and policy inference: 4087 fps total: 3929 epoch: 62/20100
+fps step: 4104 fps step and policy inference: 4076 fps total: 3919 epoch: 63/20100
+fps step: 4002 fps step and policy inference: 3975 fps total: 3821 epoch: 64/20100
+fps step: 4025 fps step and policy inference: 4001 fps total: 3851 epoch: 65/20100
+fps step: 4016 fps step and policy inference: 3991 fps total: 3837 epoch: 66/20100
+fps step: 3907 fps step and policy inference: 3883 fps total: 3734 epoch: 67/20100
+fps step: 3825 fps step and policy inference: 3799 fps total: 3655 epoch: 68/20100
+fps step: 4052 fps step and policy inference: 4027 fps total: 3875 epoch: 69/20100
+fps step: 4025 fps step and policy inference: 4000 fps total: 3851 epoch: 70/20100
+fps step: 3836 fps step and policy inference: 3813 fps total: 3661 epoch: 71/20100
+fps step: 3861 fps step and policy inference: 3838 fps total: 3697 epoch: 72/20100
+fps step: 3931 fps step and policy inference: 3906 fps total: 3745 epoch: 73/20100
+fps step: 3943 fps step and policy inference: 3919 fps total: 3774 epoch: 74/20100
+fps step: 3898 fps step and policy inference: 3874 fps total: 3734 epoch: 75/20100
+fps step: 3948 fps step and policy inference: 3924 fps total: 3769 epoch: 76/20100
+fps step: 3948 fps step and policy inference: 3925 fps total: 3780 epoch: 77/20100
+fps step: 3821 fps step and policy inference: 3798 fps total: 3655 epoch: 78/20100
+fps step: 3889 fps step and policy inference: 3866 fps total: 3713 epoch: 79/20100
+fps step: 3944 fps step and policy inference: 3919 fps total: 3770 epoch: 80/20100
+fps step: 3905 fps step and policy inference: 3880 fps total: 3738 epoch: 81/20100
+fps step: 4027 fps step and policy inference: 4003 fps total: 3851 epoch: 82/20100
+fps step: 4041 fps step and policy inference: 4015 fps total: 3864 epoch: 83/20100
+fps step: 4014 fps step and policy inference: 3990 fps total: 3841 epoch: 84/20100
+fps step: 3910 fps step and policy inference: 3886 fps total: 3745 epoch: 85/20100
+fps step: 4074 fps step and policy inference: 4049 fps total: 3897 epoch: 86/20100
+fps step: 4002 fps step and policy inference: 3978 fps total: 3824 epoch: 87/20100
+fps step: 3945 fps step and policy inference: 3920 fps total: 3776 epoch: 88/20100
+fps step: 3999 fps step and policy inference: 3975 fps total: 3827 epoch: 89/20100
+fps step: 4048 fps step and policy inference: 4024 fps total: 3874 epoch: 90/20100
+fps step: 4119 fps step and policy inference: 4094 fps total: 3937 epoch: 91/20100
+fps step: 3977 fps step and policy inference: 3952 fps total: 3799 epoch: 92/20100
+fps step: 4097 fps step and policy inference: 4072 fps total: 3916 epoch: 93/20100
+fps step: 4044 fps step and policy inference: 4020 fps total: 3862 epoch: 94/20100
+fps step: 4047 fps step and policy inference: 4021 fps total: 3868 epoch: 95/20100
+fps step: 4060 fps step and policy inference: 4034 fps total: 3881 epoch: 96/20100
+fps step: 4113 fps step and policy inference: 4089 fps total: 3931 epoch: 97/20100
+fps step: 4118 fps step and policy inference: 4093 fps total: 3936 epoch: 98/20100
+fps step: 3980 fps step and policy inference: 3955 fps total: 3804 epoch: 99/20100
+fps step: 4104 fps step and policy inference: 4077 fps total: 3921 epoch: 100/20100
+saving next best rewards:  [73.68]
+=> saving checkpoint 'runs/baoding/baodingS1.0_C0.0_M0.02025-12-01_11-15-38-83810/nn/baoding.pth'
+fps step: 4080 fps step and policy inference: 4055 fps total: 3895 epoch: 101/20100
+saving next best rewards:  [85.12]
+=> saving checkpoint 'runs/baoding/baodingS1.0_C0.0_M0.02025-12-01_11-15-38-83810/nn/baoding.pth'
+fps step: 4073 fps step and policy inference: 4048 fps total: 3896 epoch: 102/20100
+saving next best rewards:  [108.1]
+=> saving checkpoint 'runs/baoding/baodingS1.0_C0.0_M0.02025-12-01_11-15-38-83810/nn/baoding.pth'
+fps step: 4199 fps step and policy inference: 4173 fps total: 4006 epoch: 103/20100
+fps step: 4193 fps step and policy inference: 4167 fps total: 4005 epoch: 104/20100
+saving next best rewards:  [123.15]
+=> saving checkpoint 'runs/baoding/baodingS1.0_C0.0_M0.02025-12-01_11-15-38-83810/nn/baoding.pth'
+fps step: 4217 fps step and policy inference: 4191 fps total: 4027 epoch: 105/20100
+fps step: 4021 fps step and policy inference: 3996 fps total: 3841 epoch: 106/20100
+saving next best rewards:  [131.56]
+=> saving checkpoint 'runs/baoding/baodingS1.0_C0.0_M0.02025-12-01_11-15-38-83810/nn/baoding.pth'
+fps step: 4038 fps step and policy inference: 4012 fps total: 3850 epoch: 107/20100
+fps step: 4030 fps step and policy inference: 4006 fps total: 3850 epoch: 108/20100
+fps step: 4014 fps step and policy inference: 3989 fps total: 3837 epoch: 109/20100
+saving next best rewards:  [148.41]
+=> saving checkpoint 'runs/baoding/baodingS1.0_C0.0_M0.02025-12-01_11-15-38-83810/nn/baoding.pth'
+fps step: 4123 fps step and policy inference: 4098 fps total: 3940 epoch: 110/20100
+saving next best rewards:  [170.66]
+=> saving checkpoint 'runs/baoding/baodingS1.0_C0.0_M0.02025-12-01_11-15-38-83810/nn/baoding.pth'
+fps step: 4116 fps step and policy inference: 4091 fps total: 3933 epoch: 111/20100
+fps step: 4093 fps step and policy inference: 4068 fps total: 3912 epoch: 112/20100
+saving next best rewards:  [184.39]
+=> saving checkpoint 'runs/baoding/baodingS1.0_C0.0_M0.02025-12-01_11-15-38-83810/nn/baoding.pth'
+fps step: 4055 fps step and policy inference: 4028 fps total: 3869 epoch: 113/20100
+saving next best rewards:  [216.08]
+=> saving checkpoint 'runs/baoding/baodingS1.0_C0.0_M0.02025-12-01_11-15-38-83810/nn/baoding.pth'
+fps step: 4054 fps step and policy inference: 4028 fps total: 3878 epoch: 114/20100
+fps step: 4099 fps step and policy inference: 4075 fps total: 3918 epoch: 115/20100
+fps step: 3978 fps step and policy inference: 3954 fps total: 3807 epoch: 116/20100
+fps step: 4078 fps step and policy inference: 4054 fps total: 3900 epoch: 117/20100
+fps step: 4042 fps step and policy inference: 4017 fps total: 3866 epoch: 118/20100
+fps step: 4116 fps step and policy inference: 4091 fps total: 3935 epoch: 119/20100
+fps step: 4070 fps step and policy inference: 4045 fps total: 3886 epoch: 120/20100
+fps step: 4066 fps step and policy inference: 4041 fps total: 3887 epoch: 121/20100
+fps step: 4106 fps step and policy inference: 4081 fps total: 3924 epoch: 122/20100
+fps step: 3979 fps step and policy inference: 3954 fps total: 3807 epoch: 123/20100
+fps step: 4104 fps step and policy inference: 4078 fps total: 3923 epoch: 124/20100
+fps step: 4115 fps step and policy inference: 4090 fps total: 3933 epoch: 125/20100
+fps step: 4140 fps step and policy inference: 4115 fps total: 3957 epoch: 126/20100
+fps step: 4126 fps step and policy inference: 4101 fps total: 3938 epoch: 127/20100
+saving next best rewards:  [237.08]
+=> saving checkpoint 'runs/baoding/baodingS1.0_C0.0_M0.02025-12-01_11-15-38-83810/nn/baoding.pth'
+fps step: 4049 fps step and policy inference: 4025 fps total: 3874 epoch: 128/20100
+saving next best rewards:  [262.16]
+=> saving checkpoint 'runs/baoding/baodingS1.0_C0.0_M0.02025-12-01_11-15-38-83810/nn/baoding.pth'
+fps step: 4151 fps step and policy inference: 4126 fps total: 3966 epoch: 129/20100
+saving next best rewards:  [288.4]
+=> saving checkpoint 'runs/baoding/baodingS1.0_C0.0_M0.02025-12-01_11-15-38-83810/nn/baoding.pth'
+fps step: 4067 fps step and policy inference: 4041 fps total: 3881 epoch: 130/20100
+saving next best rewards:  [312.12]
+=> saving checkpoint 'runs/baoding/baodingS1.0_C0.0_M0.02025-12-01_11-15-38-83810/nn/baoding.pth'
+fps step: 4127 fps step and policy inference: 4103 fps total: 3945 epoch: 131/20100
+saving next best rewards:  [334.14]
+=> saving checkpoint 'runs/baoding/baodingS1.0_C0.0_M0.02025-12-01_11-15-38-83810/nn/baoding.pth'
+fps step: 4117 fps step and policy inference: 4091 fps total: 3932 epoch: 132/20100
+saving next best rewards:  [371.58]
+=> saving checkpoint 'runs/baoding/baodingS1.0_C0.0_M0.02025-12-01_11-15-38-83810/nn/baoding.pth'
+fps step: 4120 fps step and policy inference: 4095 fps total: 3937 epoch: 133/20100
+saving next best rewards:  [380.79]
+=> saving checkpoint 'runs/baoding/baodingS1.0_C0.0_M0.02025-12-01_11-15-38-83810/nn/baoding.pth'
+fps step: 4157 fps step and policy inference: 4132 fps total: 3971 epoch: 134/20100
+saving next best rewards:  [396.85]
+=> saving checkpoint 'runs/baoding/baodingS1.0_C0.0_M0.02025-12-01_11-15-38-83810/nn/baoding.pth'
+fps step: 4043 fps step and policy inference: 4018 fps total: 3865 epoch: 135/20100
+saving next best rewards:  [440.33]
+=> saving checkpoint 'runs/baoding/baodingS1.0_C0.0_M0.02025-12-01_11-15-38-83810/nn/baoding.pth'
+fps step: 4135 fps step and policy inference: 4108 fps total: 3949 epoch: 136/20100
+saving next best rewards:  [466.87]
+=> saving checkpoint 'runs/baoding/baodingS1.0_C0.0_M0.02025-12-01_11-15-38-83810/nn/baoding.pth'
+fps step: 4080 fps step and policy inference: 4055 fps total: 3896 epoch: 137/20100
+fps step: 4134 fps step and policy inference: 4108 fps total: 3950 epoch: 138/20100
+saving next best rewards:  [478.3]
+=> saving checkpoint 'runs/baoding/baodingS1.0_C0.0_M0.02025-12-01_11-15-38-83810/nn/baoding.pth'
+fps step: 4172 fps step and policy inference: 4145 fps total: 3985 epoch: 139/20100
+fps step: 4184 fps step and policy inference: 4159 fps total: 3996 epoch: 140/20100
+fps step: 4193 fps step and policy inference: 4167 fps total: 4005 epoch: 141/20100
+fps step: 4036 fps step and policy inference: 4011 fps total: 3854 epoch: 142/20100
+fps step: 4142 fps step and policy inference: 4116 fps total: 3956 epoch: 143/20100
+saving next best rewards:  [478.82]
+=> saving checkpoint 'runs/baoding/baodingS1.0_C0.0_M0.02025-12-01_11-15-38-83810/nn/baoding.pth'
+fps step: 4204 fps step and policy inference: 4178 fps total: 4008 epoch: 144/20100
+saving next best rewards:  [496.97]
+=> saving checkpoint 'runs/baoding/baodingS1.0_C0.0_M0.02025-12-01_11-15-38-83810/nn/baoding.pth'
+fps step: 4189 fps step and policy inference: 4164 fps total: 4001 epoch: 145/20100
+fps step: 4248 fps step and policy inference: 4223 fps total: 4056 epoch: 146/20100
+fps step: 4213 fps step and policy inference: 4186 fps total: 4024 epoch: 147/20100
+saving next best rewards:  [498.58]
+=> saving checkpoint 'runs/baoding/baodingS1.0_C0.0_M0.02025-12-01_11-15-38-83810/nn/baoding.pth'
+fps step: 4254 fps step and policy inference: 4228 fps total: 4058 epoch: 148/20100
+saving next best rewards:  [526.6]
+=> saving checkpoint 'runs/baoding/baodingS1.0_C0.0_M0.02025-12-01_11-15-38-83810/nn/baoding.pth'
+fps step: 4195 fps step and policy inference: 4169 fps total: 4000 epoch: 149/20100
+saving next best rewards:  [533.76]
+=> saving checkpoint 'runs/baoding/baodingS1.0_C0.0_M0.02025-12-01_11-15-38-83810/nn/baoding.pth'
+fps step: 4139 fps step and policy inference: 4114 fps total: 3956 epoch: 150/20100
+saving next best rewards:  [547.91]
+=> saving checkpoint 'runs/baoding/baodingS1.0_C0.0_M0.02025-12-01_11-15-38-83810/nn/baoding.pth'
+fps step: 4228 fps step and policy inference: 4202 fps total: 4032 epoch: 151/20100
+saving next best rewards:  [548.03]
+=> saving checkpoint 'runs/baoding/baodingS1.0_C0.0_M0.02025-12-01_11-15-38-83810/nn/baoding.pth'
+fps step: 4043 fps step and policy inference: 4018 fps total: 3866 epoch: 152/20100
+fps step: 4245 fps step and policy inference: 4219 fps total: 4052 epoch: 153/20100
+fps step: 4135 fps step and policy inference: 4110 fps total: 3947 epoch: 154/20100
+fps step: 4163 fps step and policy inference: 4137 fps total: 3978 epoch: 155/20100
+saving next best rewards:  [559.29]
+=> saving checkpoint 'runs/baoding/baodingS1.0_C0.0_M0.02025-12-01_11-15-38-83810/nn/baoding.pth'
+fps step: 4180 fps step and policy inference: 4154 fps total: 3994 epoch: 156/20100
+fps step: 4236 fps step and policy inference: 4211 fps total: 4045 epoch: 157/20100
+fps step: 4247 fps step and policy inference: 4221 fps total: 4054 epoch: 158/20100
+fps step: 4165 fps step and policy inference: 4139 fps total: 3970 epoch: 159/20100
+fps step: 4216 fps step and policy inference: 4190 fps total: 4025 epoch: 160/20100
+fps step: 4249 fps step and policy inference: 4223 fps total: 4055 epoch: 161/20100
+saving next best rewards:  [565.2]
+=> saving checkpoint 'runs/baoding/baodingS1.0_C0.0_M0.02025-12-01_11-15-38-83810/nn/baoding.pth'
+fps step: 4252 fps step and policy inference: 4226 fps total: 4060 epoch: 162/20100
+saving next best rewards:  [595.18]
+=> saving checkpoint 'runs/baoding/baodingS1.0_C0.0_M0.02025-12-01_11-15-38-83810/nn/baoding.pth'
+fps step: 4288 fps step and policy inference: 4261 fps total: 4092 epoch: 163/20100
+fps step: 4199 fps step and policy inference: 4172 fps total: 4002 epoch: 164/20100
+fps step: 4285 fps step and policy inference: 4259 fps total: 4089 epoch: 165/20100
+fps step: 4247 fps step and policy inference: 4221 fps total: 4054 epoch: 166/20100
+saving next best rewards:  [600.75]
+=> saving checkpoint 'runs/baoding/baodingS1.0_C0.0_M0.02025-12-01_11-15-38-83810/nn/baoding.pth'
+fps step: 4295 fps step and policy inference: 4269 fps total: 4098 epoch: 167/20100
+fps step: 4245 fps step and policy inference: 4218 fps total: 4053 epoch: 168/20100
+fps step: 4176 fps step and policy inference: 4149 fps total: 3982 epoch: 169/20100
+fps step: 4239 fps step and policy inference: 4213 fps total: 4046 epoch: 170/20100
+fps step: 4195 fps step and policy inference: 4170 fps total: 4009 epoch: 171/20100
+fps step: 4241 fps step and policy inference: 4215 fps total: 4050 epoch: 172/20100
+fps step: 4265 fps step and policy inference: 4239 fps total: 4072 epoch: 173/20100
+fps step: 4192 fps step and policy inference: 4166 fps total: 4003 epoch: 174/20100
+fps step: 4311 fps step and policy inference: 4284 fps total: 4113 epoch: 175/20100
+fps step: 4273 fps step and policy inference: 4246 fps total: 4079 epoch: 176/20100
+fps step: 4275 fps step and policy inference: 4249 fps total: 4082 epoch: 177/20100
+fps step: 4287 fps step and policy inference: 4261 fps total: 4091 epoch: 178/20100
+fps step: 4169 fps step and policy inference: 4142 fps total: 3982 epoch: 179/20100
+fps step: 4221 fps step and policy inference: 4195 fps total: 4026 epoch: 180/20100
+saving next best rewards:  [652.65]
+=> saving checkpoint 'runs/baoding/baodingS1.0_C0.0_M0.02025-12-01_11-15-38-83810/nn/baoding.pth'
+fps step: 4138 fps step and policy inference: 4112 fps total: 3946 epoch: 181/20100
+saving next best rewards:  [657.55]
+=> saving checkpoint 'runs/baoding/baodingS1.0_C0.0_M0.02025-12-01_11-15-38-83810/nn/baoding.pth'
+fps step: 4189 fps step and policy inference: 4163 fps total: 3985 epoch: 182/20100
+saving next best rewards:  [673.17]
+=> saving checkpoint 'runs/baoding/baodingS1.0_C0.0_M0.02025-12-01_11-15-38-83810/nn/baoding.pth'
+fps step: 4052 fps step and policy inference: 4026 fps total: 3873 epoch: 183/20100
+fps step: 4145 fps step and policy inference: 4117 fps total: 3958 epoch: 184/20100
+fps step: 4280 fps step and policy inference: 4254 fps total: 4084 epoch: 185/20100
+fps step: 4257 fps step and policy inference: 4231 fps total: 4063 epoch: 186/20100
+fps step: 4309 fps step and policy inference: 4282 fps total: 4110 epoch: 187/20100
+fps step: 4298 fps step and policy inference: 4272 fps total: 4103 epoch: 188/20100
+fps step: 4187 fps step and policy inference: 4161 fps total: 3999 epoch: 189/20100
+fps step: 4302 fps step and policy inference: 4275 fps total: 4104 epoch: 190/20100
+fps step: 4212 fps step and policy inference: 4186 fps total: 4014 epoch: 191/20100
+fps step: 4277 fps step and policy inference: 4251 fps total: 4082 epoch: 192/20100
+fps step: 4327 fps step and policy inference: 4300 fps total: 4127 epoch: 193/20100
+fps step: 4317 fps step and policy inference: 4291 fps total: 4118 epoch: 194/20100
+fps step: 4303 fps step and policy inference: 4276 fps total: 4105 epoch: 195/20100
+fps step: 4208 fps step and policy inference: 4181 fps total: 4010 epoch: 196/20100
+fps step: 4309 fps step and policy inference: 4283 fps total: 4111 epoch: 197/20100
+fps step: 4299 fps step and policy inference: 4272 fps total: 4103 epoch: 198/20100
+fps step: 4199 fps step and policy inference: 4172 fps total: 4009 epoch: 199/20100
+fps step: 4316 fps step and policy inference: 4289 fps total: 4116 epoch: 200/20100
+=> saving checkpoint 'runs/baoding/baodingS1.0_C0.0_M0.02025-12-01_11-15-38-83810/nn/last_baoding_ep_200_rew_568.18024.pth'
+fps step: 4259 fps step and policy inference: 4232 fps total: 4063 epoch: 201/20100
+fps step: 4310 fps step and policy inference: 4283 fps total: 4112 epoch: 202/20100
+fps step: 4280 fps step and policy inference: 4253 fps total: 4084 epoch: 203/20100
+fps step: 4156 fps step and policy inference: 4129 fps total: 3971 epoch: 204/20100
+fps step: 4307 fps step and policy inference: 4280 fps total: 4109 epoch: 205/20100
+fps step: 4162 fps step and policy inference: 4135 fps total: 3968 epoch: 206/20100
+fps step: 4344 fps step and policy inference: 4317 fps total: 4142 epoch: 207/20100
+fps step: 4325 fps step and policy inference: 4297 fps total: 4126 epoch: 208/20100
+fps step: 4325 fps step and policy inference: 4298 fps total: 4124 epoch: 209/20100
+fps step: 4301 fps step and policy inference: 4274 fps total: 4103 epoch: 210/20100
+fps step: 4162 fps step and policy inference: 4136 fps total: 3971 epoch: 211/20100
+fps step: 4247 fps step and policy inference: 4221 fps total: 4055 epoch: 212/20100
+fps step: 4306 fps step and policy inference: 4280 fps total: 4104 epoch: 213/20100
+fps step: 4175 fps step and policy inference: 4150 fps total: 3988 epoch: 214/20100
+fps step: 4274 fps step and policy inference: 4248 fps total: 4081 epoch: 215/20100
+fps step: 4277 fps step and policy inference: 4251 fps total: 4078 epoch: 216/20100
+fps step: 4280 fps step and policy inference: 4254 fps total: 4087 epoch: 217/20100
+fps step: 4331 fps step and policy inference: 4304 fps total: 4127 epoch: 218/20100
+fps step: 4173 fps step and policy inference: 4147 fps total: 3987 epoch: 219/20100
+fps step: 4309 fps step and policy inference: 4282 fps total: 4110 epoch: 220/20100
+fps step: 4187 fps step and policy inference: 4161 fps total: 3992 epoch: 221/20100
+fps step: 4303 fps step and policy inference: 4277 fps total: 4103 epoch: 222/20100
+saving next best rewards:  [673.4]
+=> saving checkpoint 'runs/baoding/baodingS1.0_C0.0_M0.02025-12-01_11-15-38-83810/nn/baoding.pth'
+fps step: 4328 fps step and policy inference: 4300 fps total: 4127 epoch: 223/20100
+saving next best rewards:  [695.]
+=> saving checkpoint 'runs/baoding/baodingS1.0_C0.0_M0.02025-12-01_11-15-38-83810/nn/baoding.pth'
+fps step: 4322 fps step and policy inference: 4294 fps total: 4122 epoch: 224/20100
+fps step: 4307 fps step and policy inference: 4281 fps total: 4109 epoch: 225/20100
+fps step: 4187 fps step and policy inference: 4161 fps total: 3990 epoch: 226/20100
+fps step: 4294 fps step and policy inference: 4267 fps total: 4096 epoch: 227/20100
+fps step: 4279 fps step and policy inference: 4252 fps total: 4077 epoch: 228/20100
+fps step: 4211 fps step and policy inference: 4185 fps total: 4022 epoch: 229/20100
+fps step: 4309 fps step and policy inference: 4282 fps total: 4111 epoch: 230/20100
+fps step: 4253 fps step and policy inference: 4227 fps total: 4059 epoch: 231/20100
+fps step: 4263 fps step and policy inference: 4237 fps total: 4069 epoch: 232/20100
+fps step: 4246 fps step and policy inference: 4219 fps total: 4046 epoch: 233/20100
+fps step: 4190 fps step and policy inference: 4163 fps total: 4001 epoch: 234/20100
+fps step: 4285 fps step and policy inference: 4258 fps total: 4088 epoch: 235/20100
+fps step: 4168 fps step and policy inference: 4140 fps total: 3974 epoch: 236/20100
+fps step: 4294 fps step and policy inference: 4267 fps total: 4097 epoch: 237/20100
+fps step: 4272 fps step and policy inference: 4246 fps total: 4076 epoch: 238/20100
+fps step: 4323 fps step and policy inference: 4295 fps total: 4123 epoch: 239/20100
+fps step: 4303 fps step and policy inference: 4276 fps total: 4104 epoch: 240/20100
+fps step: 4169 fps step and policy inference: 4143 fps total: 3978 epoch: 241/20100
+fps step: 4280 fps step and policy inference: 4254 fps total: 4084 epoch: 242/20100
+fps step: 4260 fps step and policy inference: 4234 fps total: 4059 epoch: 243/20100
+fps step: 4242 fps step and policy inference: 4216 fps total: 4049 epoch: 244/20100
+fps step: 4313 fps step and policy inference: 4287 fps total: 4113 epoch: 245/20100
+fps step: 4251 fps step and policy inference: 4223 fps total: 4056 epoch: 246/20100
+fps step: 4291 fps step and policy inference: 4265 fps total: 4095 epoch: 247/20100
+fps step: 4259 fps step and policy inference: 4233 fps total: 4060 epoch: 248/20100
+fps step: 4195 fps step and policy inference: 4168 fps total: 4005 epoch: 249/20100
+fps step: 4284 fps step and policy inference: 4257 fps total: 4086 epoch: 250/20100
+fps step: 4127 fps step and policy inference: 4101 fps total: 3943 epoch: 251/20100
+fps step: 4296 fps step and policy inference: 4270 fps total: 4099 epoch: 252/20100
+fps step: 4315 fps step and policy inference: 4289 fps total: 4116 epoch: 253/20100
+fps step: 4298 fps step and policy inference: 4271 fps total: 4099 epoch: 254/20100
+fps step: 4367 fps step and policy inference: 4340 fps total: 4161 epoch: 255/20100
+saving next best rewards:  [696.25]
+=> saving checkpoint 'runs/baoding/baodingS1.0_C0.0_M0.02025-12-01_11-15-38-83810/nn/baoding.pth'
+fps step: 4172 fps step and policy inference: 4145 fps total: 3982 epoch: 256/20100
+fps step: 4329 fps step and policy inference: 4302 fps total: 4128 epoch: 257/20100
+fps step: 4154 fps step and policy inference: 4128 fps total: 3958 epoch: 258/20100
+saving next best rewards:  [717.34]
+=> saving checkpoint 'runs/baoding/baodingS1.0_C0.0_M0.02025-12-01_11-15-38-83810/nn/baoding.pth'
+fps step: 4241 fps step and policy inference: 4214 fps total: 4046 epoch: 259/20100
+fps step: 4289 fps step and policy inference: 4262 fps total: 4076 epoch: 260/20100
+fps step: 3878 fps step and policy inference: 3855 fps total: 3708 epoch: 261/20100
+saving next best rewards:  [718.65]
+=> saving checkpoint 'runs/baoding/baodingS1.0_C0.0_M0.02025-12-01_11-15-38-83810/nn/baoding.pth'
+fps step: 3846 fps step and policy inference: 3823 fps total: 3679 epoch: 262/20100
+fps step: 3860 fps step and policy inference: 3838 fps total: 3692 epoch: 263/20100
+fps step: 3859 fps step and policy inference: 3836 fps total: 3692 epoch: 264/20100
+fps step: 3862 fps step and policy inference: 3839 fps total: 3694 epoch: 265/20100
+fps step: 3869 fps step and policy inference: 3846 fps total: 3699 epoch: 266/20100
+saving next best rewards:  [730.75]
+=> saving checkpoint 'runs/baoding/baodingS1.0_C0.0_M0.02025-12-01_11-15-38-83810/nn/baoding.pth'
+fps step: 3848 fps step and policy inference: 3826 fps total: 3682 epoch: 267/20100
+fps step: 3929 fps step and policy inference: 3906 fps total: 3755 epoch: 268/20100
+saving next best rewards:  [731.48]
+=> saving checkpoint 'runs/baoding/baodingS1.0_C0.0_M0.02025-12-01_11-15-38-83810/nn/baoding.pth'
+fps step: 3934 fps step and policy inference: 3910 fps total: 3759 epoch: 269/20100
+saving next best rewards:  [737.41]
+=> saving checkpoint 'runs/baoding/baodingS1.0_C0.0_M0.02025-12-01_11-15-38-83810/nn/baoding.pth'
+fps step: 3857 fps step and policy inference: 3834 fps total: 3690 epoch: 270/20100
+fps step: 3865 fps step and policy inference: 3842 fps total: 3698 epoch: 271/20100
+fps step: 3817 fps step and policy inference: 3795 fps total: 3653 epoch: 272/20100
+fps step: 3881 fps step and policy inference: 3859 fps total: 3711 epoch: 273/20100
+fps step: 3853 fps step and policy inference: 3830 fps total: 3684 epoch: 274/20100
+fps step: 3905 fps step and policy inference: 3882 fps total: 3734 epoch: 275/20100
+fps step: 3888 fps step and policy inference: 3864 fps total: 3718 epoch: 276/20100
+fps step: 3876 fps step and policy inference: 3854 fps total: 3707 epoch: 277/20100
+fps step: 3889 fps step and policy inference: 3867 fps total: 3719 epoch: 278/20100
+fps step: 3913 fps step and policy inference: 3890 fps total: 3741 epoch: 279/20100
+fps step: 3897 fps step and policy inference: 3874 fps total: 3727 epoch: 280/20100
+fps step: 3885 fps step and policy inference: 3862 fps total: 3715 epoch: 281/20100
+fps step: 3902 fps step and policy inference: 3879 fps total: 3732 epoch: 282/20100
+fps step: 3921 fps step and policy inference: 3897 fps total: 3748 epoch: 283/20100
+fps step: 3941 fps step and policy inference: 3918 fps total: 3767 epoch: 284/20100
+fps step: 3906 fps step and policy inference: 3884 fps total: 3735 epoch: 285/20100
+fps step: 3919 fps step and policy inference: 3897 fps total: 3747 epoch: 286/20100
+fps step: 3902 fps step and policy inference: 3880 fps total: 3733 epoch: 287/20100
+fps step: 3889 fps step and policy inference: 3866 fps total: 3719 epoch: 288/20100
+saving next best rewards:  [746.89]
+=> saving checkpoint 'runs/baoding/baodingS1.0_C0.0_M0.02025-12-01_11-15-38-83810/nn/baoding.pth'
+fps step: 3911 fps step and policy inference: 3888 fps total: 3739 epoch: 289/20100
+fps step: 3904 fps step and policy inference: 3880 fps total: 3732 epoch: 290/20100
+fps step: 3841 fps step and policy inference: 3819 fps total: 3676 epoch: 291/20100
+fps step: 3863 fps step and policy inference: 3841 fps total: 3696 epoch: 292/20100
+fps step: 3894 fps step and policy inference: 3871 fps total: 3724 epoch: 293/20100
+fps step: 3936 fps step and policy inference: 3912 fps total: 3762 epoch: 294/20100
+saving next best rewards:  [758.46]
+=> saving checkpoint 'runs/baoding/baodingS1.0_C0.0_M0.02025-12-01_11-15-38-83810/nn/baoding.pth'
+fps step: 3904 fps step and policy inference: 3881 fps total: 3733 epoch: 295/20100
+saving next best rewards:  [848.82]
+=> saving checkpoint 'runs/baoding/baodingS1.0_C0.0_M0.02025-12-01_11-15-38-83810/nn/baoding.pth'
+fps step: 3936 fps step and policy inference: 3913 fps total: 3763 epoch: 296/20100
+saving next best rewards:  [865.05]
+=> saving checkpoint 'runs/baoding/baodingS1.0_C0.0_M0.02025-12-01_11-15-38-83810/nn/baoding.pth'
+fps step: 3931 fps step and policy inference: 3908 fps total: 3757 epoch: 297/20100
+fps step: 3890 fps step and policy inference: 3867 fps total: 3719 epoch: 298/20100
+fps step: 3895 fps step and policy inference: 3872 fps total: 3724 epoch: 299/20100
+fps step: 3923 fps step and policy inference: 3900 fps total: 3752 epoch: 300/20100
+=> saving checkpoint 'runs/baoding/baodingS1.0_C0.0_M0.02025-12-01_11-15-38-83810/nn/last_baoding_ep_300_rew_755.82855.pth'
+fps step: 3906 fps step and policy inference: 3883 fps total: 3735 epoch: 301/20100
+fps step: 3957 fps step and policy inference: 3933 fps total: 3781 epoch: 302/20100
+fps step: 3934 fps step and policy inference: 3911 fps total: 3761 epoch: 303/20100
+fps step: 3949 fps step and policy inference: 3925 fps total: 3773 epoch: 304/20100
+fps step: 3912 fps step and policy inference: 3889 fps total: 3740 epoch: 305/20100
+fps step: 3885 fps step and policy inference: 3863 fps total: 3716 epoch: 306/20100
+fps step: 3935 fps step and policy inference: 3912 fps total: 3762 epoch: 307/20100
+fps step: 3938 fps step and policy inference: 3915 fps total: 3764 epoch: 308/20100
+fps step: 3943 fps step and policy inference: 3920 fps total: 3769 epoch: 309/20100
+fps step: 3947 fps step and policy inference: 3924 fps total: 3772 epoch: 310/20100
+fps step: 3956 fps step and policy inference: 3932 fps total: 3781 epoch: 311/20100
+fps step: 3950 fps step and policy inference: 3926 fps total: 3775 epoch: 312/20100
+fps step: 3949 fps step and policy inference: 3926 fps total: 3775 epoch: 313/20100
+fps step: 3967 fps step and policy inference: 3944 fps total: 3792 epoch: 314/20100
+fps step: 3946 fps step and policy inference: 3923 fps total: 3771 epoch: 315/20100
+fps step: 3961 fps step and policy inference: 3938 fps total: 3787 epoch: 316/20100
+fps step: 3974 fps step and policy inference: 3950 fps total: 3798 epoch: 317/20100
+fps step: 3972 fps step and policy inference: 3948 fps total: 3794 epoch: 318/20100
+fps step: 3948 fps step and policy inference: 3925 fps total: 3770 epoch: 319/20100
+fps step: 3950 fps step and policy inference: 3927 fps total: 3775 epoch: 320/20100
+fps step: 3971 fps step and policy inference: 3948 fps total: 3795 epoch: 321/20100
+fps step: 3935 fps step and policy inference: 3913 fps total: 3762 epoch: 322/20100
+fps step: 3940 fps step and policy inference: 3917 fps total: 3766 epoch: 323/20100
+fps step: 3915 fps step and policy inference: 3892 fps total: 3743 epoch: 324/20100
+fps step: 3912 fps step and policy inference: 3889 fps total: 3731 epoch: 325/20100
+fps step: 4282 fps step and policy inference: 4255 fps total: 4086 epoch: 326/20100
+fps step: 4250 fps step and policy inference: 4223 fps total: 4050 epoch: 327/20100
+fps step: 4171 fps step and policy inference: 4144 fps total: 3983 epoch: 328/20100
+fps step: 4312 fps step and policy inference: 4286 fps total: 4112 epoch: 329/20100
+fps step: 4361 fps step and policy inference: 4334 fps total: 4158 epoch: 330/20100
+fps step: 4370 fps step and policy inference: 4343 fps total: 4166 epoch: 331/20100
+fps step: 4284 fps step and policy inference: 4257 fps total: 4081 epoch: 332/20100
+fps step: 4336 fps step and policy inference: 4309 fps total: 4136 epoch: 333/20100
+fps step: 4347 fps step and policy inference: 4320 fps total: 4136 epoch: 334/20100
+fps step: 4279 fps step and policy inference: 4251 fps total: 4081 epoch: 335/20100
+fps step: 4370 fps step and policy inference: 4342 fps total: 4168 epoch: 336/20100
+fps step: 4366 fps step and policy inference: 4338 fps total: 4161 epoch: 337/20100
+fps step: 4397 fps step and policy inference: 4370 fps total: 4191 epoch: 338/20100
+fps step: 4385 fps step and policy inference: 4357 fps total: 4171 epoch: 339/20100
+fps step: 4227 fps step and policy inference: 4200 fps total: 4034 epoch: 340/20100
+fps step: 4371 fps step and policy inference: 4344 fps total: 4166 epoch: 341/20100
+fps step: 4340 fps step and policy inference: 4312 fps total: 4131 epoch: 342/20100
+fps step: 4367 fps step and policy inference: 4339 fps total: 4161 epoch: 343/20100
+fps step: 4435 fps step and policy inference: 4407 fps total: 4219 epoch: 344/20100
+fps step: 4382 fps step and policy inference: 4354 fps total: 4178 epoch: 345/20100
+fps step: 4354 fps step and policy inference: 4327 fps total: 4150 epoch: 346/20100
+fps step: 4372 fps step and policy inference: 4344 fps total: 4158 epoch: 347/20100
+fps step: 4318 fps step and policy inference: 4290 fps total: 4119 epoch: 348/20100
+fps step: 4414 fps step and policy inference: 4386 fps total: 4207 epoch: 349/20100
+fps step: 4218 fps step and policy inference: 4191 fps total: 4014 epoch: 350/20100
+fps step: 4376 fps step and policy inference: 4348 fps total: 4172 epoch: 351/20100
+fps step: 4387 fps step and policy inference: 4359 fps total: 4182 epoch: 352/20100
+fps step: 4381 fps step and policy inference: 4353 fps total: 4176 epoch: 353/20100
+fps step: 4409 fps step and policy inference: 4381 fps total: 4200 epoch: 354/20100
+fps step: 4251 fps step and policy inference: 4223 fps total: 4048 epoch: 355/20100
+fps step: 4324 fps step and policy inference: 4296 fps total: 4123 epoch: 356/20100
+fps step: 4347 fps step and policy inference: 4319 fps total: 4139 epoch: 357/20100
+fps step: 4261 fps step and policy inference: 4234 fps total: 4066 epoch: 358/20100
+fps step: 4360 fps step and policy inference: 4333 fps total: 4156 epoch: 359/20100
+fps step: 4322 fps step and policy inference: 4294 fps total: 4121 epoch: 360/20100
+fps step: 4355 fps step and policy inference: 4327 fps total: 4151 epoch: 361/20100
+fps step: 4287 fps step and policy inference: 4260 fps total: 4083 epoch: 362/20100
+fps step: 4269 fps step and policy inference: 4241 fps total: 4072 epoch: 363/20100
+fps step: 4340 fps step and policy inference: 4313 fps total: 4138 epoch: 364/20100
+fps step: 4225 fps step and policy inference: 4198 fps total: 4026 epoch: 365/20100
+fps step: 4314 fps step and policy inference: 4287 fps total: 4114 epoch: 366/20100
+fps step: 4320 fps step and policy inference: 4293 fps total: 4120 epoch: 367/20100
+fps step: 4359 fps step and policy inference: 4331 fps total: 4154 epoch: 368/20100
+fps step: 4368 fps step and policy inference: 4341 fps total: 4164 epoch: 369/20100
+fps step: 4244 fps step and policy inference: 4216 fps total: 4042 epoch: 370/20100
+fps step: 4343 fps step and policy inference: 4316 fps total: 4141 epoch: 371/20100
+fps step: 4357 fps step and policy inference: 4330 fps total: 4147 epoch: 372/20100
+fps step: 4276 fps step and policy inference: 4247 fps total: 4077 epoch: 373/20100
+fps step: 4365 fps step and policy inference: 4338 fps total: 4161 epoch: 374/20100
+fps step: 4331 fps step and policy inference: 4304 fps total: 4130 epoch: 375/20100
+fps step: 4338 fps step and policy inference: 4311 fps total: 4136 epoch: 376/20100
+fps step: 4367 fps step and policy inference: 4339 fps total: 4154 epoch: 377/20100
+fps step: 4226 fps step and policy inference: 4198 fps total: 4032 epoch: 378/20100
+fps step: 4343 fps step and policy inference: 4315 fps total: 4139 epoch: 379/20100
+fps step: 4275 fps step and policy inference: 4249 fps total: 4074 epoch: 380/20100
+fps step: 4367 fps step and policy inference: 4338 fps total: 4162 epoch: 381/20100
+fps step: 4358 fps step and policy inference: 4331 fps total: 4156 epoch: 382/20100
+fps step: 4356 fps step and policy inference: 4329 fps total: 4153 epoch: 383/20100
+fps step: 4366 fps step and policy inference: 4338 fps total: 4158 epoch: 384/20100
+fps step: 4247 fps step and policy inference: 4220 fps total: 4043 epoch: 385/20100
+fps step: 4330 fps step and policy inference: 4302 fps total: 4128 epoch: 386/20100
+fps step: 4359 fps step and policy inference: 4331 fps total: 4150 epoch: 387/20100
+fps step: 4242 fps step and policy inference: 4214 fps total: 4046 epoch: 388/20100
+fps step: 4409 fps step and policy inference: 4381 fps total: 4199 epoch: 389/20100
+fps step: 4359 fps step and policy inference: 4331 fps total: 4155 epoch: 390/20100
+fps step: 4388 fps step and policy inference: 4360 fps total: 4183 epoch: 391/20100
+fps step: 4416 fps step and policy inference: 4388 fps total: 4206 epoch: 392/20100
+fps step: 4263 fps step and policy inference: 4236 fps total: 4066 epoch: 393/20100
+fps step: 4395 fps step and policy inference: 4367 fps total: 4189 epoch: 394/20100
+fps step: 4284 fps step and policy inference: 4256 fps total: 4079 epoch: 395/20100
+fps step: 4315 fps step and policy inference: 4287 fps total: 4114 epoch: 396/20100
+fps step: 4347 fps step and policy inference: 4320 fps total: 4135 epoch: 397/20100
+fps step: 4400 fps step and policy inference: 4372 fps total: 4192 epoch: 398/20100
+fps step: 4419 fps step and policy inference: 4391 fps total: 4209 epoch: 399/20100
+fps step: 4296 fps step and policy inference: 4268 fps total: 4088 epoch: 400/20100
+=> saving checkpoint 'runs/baoding/baodingS1.0_C0.0_M0.02025-12-01_11-15-38-83810/nn/last_baoding_ep_400_rew_710.9267.pth'
+fps step: 4277 fps step and policy inference: 4250 fps total: 4077 epoch: 401/20100
+fps step: 4389 fps step and policy inference: 4361 fps total: 4182 epoch: 402/20100
+fps step: 4262 fps step and policy inference: 4235 fps total: 4065 epoch: 403/20100
+fps step: 4151 fps step and policy inference: 4125 fps total: 3953 epoch: 404/20100
+fps step: 4218 fps step and policy inference: 4191 fps total: 4022 epoch: 405/20100
+fps step: 4317 fps step and policy inference: 4290 fps total: 4116 epoch: 406/20100
+fps step: 4365 fps step and policy inference: 4337 fps total: 4159 epoch: 407/20100
+fps step: 4270 fps step and policy inference: 4242 fps total: 4073 epoch: 408/20100
+fps step: 4359 fps step and policy inference: 4331 fps total: 4152 epoch: 409/20100
+fps step: 4277 fps step and policy inference: 4250 fps total: 4075 epoch: 410/20100
+fps step: 4320 fps step and policy inference: 4292 fps total: 4119 epoch: 411/20100
+fps step: 4362 fps step and policy inference: 4334 fps total: 4157 epoch: 412/20100
+fps step: 4354 fps step and policy inference: 4327 fps total: 4151 epoch: 413/20100
+fps step: 4386 fps step and policy inference: 4359 fps total: 4180 epoch: 414/20100
+fps step: 4258 fps step and policy inference: 4231 fps total: 4056 epoch: 415/20100
+fps step: 4290 fps step and policy inference: 4263 fps total: 4091 epoch: 416/20100
+fps step: 4361 fps step and policy inference: 4333 fps total: 4157 epoch: 417/20100
+fps step: 4234 fps step and policy inference: 4207 fps total: 4039 epoch: 418/20100
+fps step: 4380 fps step and policy inference: 4352 fps total: 4174 epoch: 419/20100
+fps step: 4291 fps step and policy inference: 4263 fps total: 4092 epoch: 420/20100
+fps step: 4382 fps step and policy inference: 4354 fps total: 4176 epoch: 421/20100
+fps step: 4353 fps step and policy inference: 4326 fps total: 4142 epoch: 422/20100
+fps step: 4273 fps step and policy inference: 4245 fps total: 4070 epoch: 423/20100
+fps step: 4351 fps step and policy inference: 4323 fps total: 4147 epoch: 424/20100
+fps step: 4309 fps step and policy inference: 4282 fps total: 4103 epoch: 425/20100
+fps step: 4297 fps step and policy inference: 4269 fps total: 4097 epoch: 426/20100
+fps step: 4393 fps step and policy inference: 4365 fps total: 4186 epoch: 427/20100
+fps step: 4299 fps step and policy inference: 4273 fps total: 4101 epoch: 428/20100
+fps step: 4380 fps step and policy inference: 4352 fps total: 4174 epoch: 429/20100
+fps step: 4298 fps step and policy inference: 4270 fps total: 4092 epoch: 430/20100
+fps step: 4252 fps step and policy inference: 4224 fps total: 4056 epoch: 431/20100
+fps step: 4357 fps step and policy inference: 4329 fps total: 4152 epoch: 432/20100
+fps step: 4259 fps step and policy inference: 4232 fps total: 4058 epoch: 433/20100
+fps step: 4363 fps step and policy inference: 4335 fps total: 4159 epoch: 434/20100
+fps step: 4330 fps step and policy inference: 4303 fps total: 4128 epoch: 435/20100
+fps step: 4370 fps step and policy inference: 4342 fps total: 4165 epoch: 436/20100
+fps step: 4394 fps step and policy inference: 4366 fps total: 4183 epoch: 437/20100
+fps step: 4310 fps step and policy inference: 4282 fps total: 4104 epoch: 438/20100
+fps step: 4377 fps step and policy inference: 4349 fps total: 4170 epoch: 439/20100
+fps step: 4338 fps step and policy inference: 4310 fps total: 4127 epoch: 440/20100
+fps step: 4303 fps step and policy inference: 4276 fps total: 4103 epoch: 441/20100
+fps step: 4442 fps step and policy inference: 4413 fps total: 4230 epoch: 442/20100
+fps step: 4430 fps step and policy inference: 4402 fps total: 4220 epoch: 443/20100
+fps step: 4420 fps step and policy inference: 4392 fps total: 4210 epoch: 444/20100
+fps step: 4424 fps step and policy inference: 4396 fps total: 4206 epoch: 445/20100
+fps step: 4271 fps step and policy inference: 4243 fps total: 4073 epoch: 446/20100
+fps step: 4406 fps step and policy inference: 4378 fps total: 4197 epoch: 447/20100
+fps step: 4346 fps step and policy inference: 4318 fps total: 4139 epoch: 448/20100
+fps step: 4333 fps step and policy inference: 4305 fps total: 4131 epoch: 449/20100
+fps step: 4386 fps step and policy inference: 4359 fps total: 4166 epoch: 450/20100
+fps step: 4354 fps step and policy inference: 4326 fps total: 4150 epoch: 451/20100
+fps step: 4274 fps step and policy inference: 4246 fps total: 4067 epoch: 452/20100
+fps step: 4289 fps step and policy inference: 4262 fps total: 4090 epoch: 453/20100
+fps step: 4384 fps step and policy inference: 4356 fps total: 4177 epoch: 454/20100
+fps step: 4422 fps step and policy inference: 4393 fps total: 4210 epoch: 455/20100
+fps step: 4416 fps step and policy inference: 4388 fps total: 4206 epoch: 456/20100
+fps step: 4393 fps step and policy inference: 4365 fps total: 4186 epoch: 457/20100
+fps step: 4386 fps step and policy inference: 4358 fps total: 4180 epoch: 458/20100
+fps step: 4433 fps step and policy inference: 4404 fps total: 4221 epoch: 459/20100
+fps step: 4427 fps step and policy inference: 4399 fps total: 4217 epoch: 460/20100
+fps step: 4399 fps step and policy inference: 4371 fps total: 4191 epoch: 461/20100
+fps step: 4425 fps step and policy inference: 4397 fps total: 4215 epoch: 462/20100
+saving next best rewards:  [888.83]
+=> saving checkpoint 'runs/baoding/baodingS1.0_C0.0_M0.02025-12-01_11-15-38-83810/nn/baoding.pth'
+fps step: 4380 fps step and policy inference: 4353 fps total: 4174 epoch: 463/20100
+fps step: 4453 fps step and policy inference: 4425 fps total: 4240 epoch: 464/20100
+saving next best rewards:  [890.39]
+=> saving checkpoint 'runs/baoding/baodingS1.0_C0.0_M0.02025-12-01_11-15-38-83810/nn/baoding.pth'
+fps step: 4417 fps step and policy inference: 4389 fps total: 4208 epoch: 465/20100
+fps step: 4432 fps step and policy inference: 4404 fps total: 4222 epoch: 466/20100
+fps step: 4424 fps step and policy inference: 4396 fps total: 4213 epoch: 467/20100
+fps step: 4429 fps step and policy inference: 4400 fps total: 4218 epoch: 468/20100
+fps step: 4433 fps step and policy inference: 4404 fps total: 4222 epoch: 469/20100
+fps step: 4430 fps step and policy inference: 4403 fps total: 4221 epoch: 470/20100
+fps step: 4466 fps step and policy inference: 4437 fps total: 4253 epoch: 471/20100
+fps step: 4432 fps step and policy inference: 4404 fps total: 4221 epoch: 472/20100
+fps step: 4455 fps step and policy inference: 4427 fps total: 4242 epoch: 473/20100
+fps step: 4451 fps step and policy inference: 4422 fps total: 4239 epoch: 474/20100
+fps step: 4470 fps step and policy inference: 4442 fps total: 4257 epoch: 475/20100
+fps step: 4469 fps step and policy inference: 4441 fps total: 4254 epoch: 476/20100
+fps step: 4469 fps step and policy inference: 4440 fps total: 4255 epoch: 477/20100
+fps step: 4430 fps step and policy inference: 4402 fps total: 4220 epoch: 478/20100
+fps step: 4481 fps step and policy inference: 4453 fps total: 4268 epoch: 479/20100
+fps step: 4473 fps step and policy inference: 4444 fps total: 4258 epoch: 480/20100
+fps step: 4464 fps step and policy inference: 4436 fps total: 4252 epoch: 481/20100
+fps step: 4443 fps step and policy inference: 4414 fps total: 4232 epoch: 482/20100
+fps step: 4432 fps step and policy inference: 4403 fps total: 4221 epoch: 483/20100
+fps step: 4428 fps step and policy inference: 4400 fps total: 4219 epoch: 484/20100
+fps step: 4440 fps step and policy inference: 4411 fps total: 4227 epoch: 485/20100
+fps step: 4339 fps step and policy inference: 4311 fps total: 4131 epoch: 486/20100
+fps step: 4313 fps step and policy inference: 4286 fps total: 4111 epoch: 487/20100
+fps step: 4414 fps step and policy inference: 4386 fps total: 4206 epoch: 488/20100
+fps step: 4417 fps step and policy inference: 4389 fps total: 4208 epoch: 489/20100
+fps step: 4455 fps step and policy inference: 4427 fps total: 4242 epoch: 490/20100
+fps step: 4455 fps step and policy inference: 4426 fps total: 4242 epoch: 491/20100
+fps step: 4440 fps step and policy inference: 4411 fps total: 4228 epoch: 492/20100
+fps step: 4405 fps step and policy inference: 4377 fps total: 4199 epoch: 493/20100
+fps step: 4400 fps step and policy inference: 4372 fps total: 4194 epoch: 494/20100
+fps step: 4353 fps step and policy inference: 4326 fps total: 4150 epoch: 495/20100
+fps step: 4453 fps step and policy inference: 4425 fps total: 4240 epoch: 496/20100
+fps step: 4415 fps step and policy inference: 4387 fps total: 4207 epoch: 497/20100
+fps step: 4426 fps step and policy inference: 4398 fps total: 4216 epoch: 498/20100
+fps step: 4452 fps step and policy inference: 4423 fps total: 4239 epoch: 499/20100
+fps step: 4425 fps step and policy inference: 4397 fps total: 4214 epoch: 500/20100
+=> saving checkpoint 'runs/baoding/baodingS1.0_C0.0_M0.02025-12-01_11-15-38-83810/nn/last_baoding_ep_500_rew_746.986.pth'
+fps step: 4451 fps step and policy inference: 4422 fps total: 4239 epoch: 501/20100
+fps step: 4428 fps step and policy inference: 4401 fps total: 4220 epoch: 502/20100
+fps step: 4420 fps step and policy inference: 4391 fps total: 4211 epoch: 503/20100
+fps step: 4430 fps step and policy inference: 4402 fps total: 4219 epoch: 504/20100
+fps step: 4431 fps step and policy inference: 4403 fps total: 4220 epoch: 505/20100
+fps step: 4430 fps step and policy inference: 4402 fps total: 4220 epoch: 506/20100
+fps step: 4452 fps step and policy inference: 4424 fps total: 4239 epoch: 507/20100
+fps step: 4446 fps step and policy inference: 4418 fps total: 4234 epoch: 508/20100
+fps step: 4437 fps step and policy inference: 4409 fps total: 4225 epoch: 509/20100
+fps step: 4465 fps step and policy inference: 4437 fps total: 4253 epoch: 510/20100
+fps step: 4356 fps step and policy inference: 4328 fps total: 4152 epoch: 511/20100
+fps step: 4457 fps step and policy inference: 4429 fps total: 4245 epoch: 512/20100
+fps step: 4436 fps step and policy inference: 4407 fps total: 4225 epoch: 513/20100
+fps step: 4439 fps step and policy inference: 4410 fps total: 4228 epoch: 514/20100
+fps step: 4399 fps step and policy inference: 4371 fps total: 4193 epoch: 515/20100
+fps step: 4419 fps step and policy inference: 4390 fps total: 4209 epoch: 516/20100
+fps step: 4429 fps step and policy inference: 4401 fps total: 4218 epoch: 517/20100
+saving next best rewards:  [901.2]
+=> saving checkpoint 'runs/baoding/baodingS1.0_C0.0_M0.02025-12-01_11-15-38-83810/nn/baoding.pth'
+fps step: 4445 fps step and policy inference: 4416 fps total: 4233 epoch: 518/20100
+fps step: 4442 fps step and policy inference: 4414 fps total: 4230 epoch: 519/20100
+fps step: 4447 fps step and policy inference: 4419 fps total: 4235 epoch: 520/20100
+fps step: 4466 fps step and policy inference: 4438 fps total: 4253 epoch: 521/20100
+fps step: 4452 fps step and policy inference: 4424 fps total: 4241 epoch: 522/20100
+fps step: 4457 fps step and policy inference: 4429 fps total: 4245 epoch: 523/20100
+fps step: 4457 fps step and policy inference: 4429 fps total: 4244 epoch: 524/20100
+fps step: 4442 fps step and policy inference: 4414 fps total: 4230 epoch: 525/20100
+fps step: 4448 fps step and policy inference: 4419 fps total: 4235 epoch: 526/20100
+fps step: 4458 fps step and policy inference: 4430 fps total: 4246 epoch: 527/20100
+fps step: 4452 fps step and policy inference: 4423 fps total: 4239 epoch: 528/20100
+fps step: 4450 fps step and policy inference: 4421 fps total: 4237 epoch: 529/20100
+fps step: 4446 fps step and policy inference: 4417 fps total: 4230 epoch: 530/20100
+fps step: 4475 fps step and policy inference: 4446 fps total: 4259 epoch: 531/20100
+fps step: 4450 fps step and policy inference: 4421 fps total: 4237 epoch: 532/20100
+fps step: 4469 fps step and policy inference: 4441 fps total: 4255 epoch: 533/20100
+fps step: 4460 fps step and policy inference: 4432 fps total: 4245 epoch: 534/20100
+saving next best rewards:  [912.77]
+=> saving checkpoint 'runs/baoding/baodingS1.0_C0.0_M0.02025-12-01_11-15-38-83810/nn/baoding.pth'
+fps step: 4462 fps step and policy inference: 4434 fps total: 4249 epoch: 535/20100
+fps step: 4423 fps step and policy inference: 4395 fps total: 4215 epoch: 536/20100
+fps step: 4449 fps step and policy inference: 4421 fps total: 4237 epoch: 537/20100
+fps step: 4451 fps step and policy inference: 4422 fps total: 4238 epoch: 538/20100
+fps step: 4348 fps step and policy inference: 4320 fps total: 4143 epoch: 539/20100
+fps step: 4434 fps step and policy inference: 4405 fps total: 4223 epoch: 540/20100
+fps step: 4442 fps step and policy inference: 4412 fps total: 4230 epoch: 541/20100
+fps step: 4475 fps step and policy inference: 4447 fps total: 4263 epoch: 542/20100
+fps step: 4470 fps step and policy inference: 4441 fps total: 4256 epoch: 543/20100
+fps step: 4455 fps step and policy inference: 4426 fps total: 4244 epoch: 544/20100
+fps step: 4451 fps step and policy inference: 4422 fps total: 4239 epoch: 545/20100
+saving next best rewards:  [913.43]
+=> saving checkpoint 'runs/baoding/baodingS1.0_C0.0_M0.02025-12-01_11-15-38-83810/nn/baoding.pth'
+fps step: 4453 fps step and policy inference: 4424 fps total: 4238 epoch: 546/20100
+saving next best rewards:  [946.74]
+=> saving checkpoint 'runs/baoding/baodingS1.0_C0.0_M0.02025-12-01_11-15-38-83810/nn/baoding.pth'
+fps step: 4461 fps step and policy inference: 4432 fps total: 4245 epoch: 547/20100
+fps step: 4417 fps step and policy inference: 4389 fps total: 4205 epoch: 548/20100
+fps step: 4349 fps step and policy inference: 4320 fps total: 4144 epoch: 549/20100
+fps step: 4433 fps step and policy inference: 4404 fps total: 4219 epoch: 550/20100
+fps step: 4419 fps step and policy inference: 4391 fps total: 4206 epoch: 551/20100
+fps step: 4445 fps step and policy inference: 4417 fps total: 4233 epoch: 552/20100
+fps step: 4412 fps step and policy inference: 4383 fps total: 4202 epoch: 553/20100
+fps step: 4383 fps step and policy inference: 4354 fps total: 4163 epoch: 554/20100
+fps step: 4376 fps step and policy inference: 4347 fps total: 4168 epoch: 555/20100
+fps step: 4412 fps step and policy inference: 4383 fps total: 4199 epoch: 556/20100
+fps step: 4399 fps step and policy inference: 4370 fps total: 4189 epoch: 557/20100
+fps step: 4415 fps step and policy inference: 4386 fps total: 4207 epoch: 558/20100
+fps step: 4381 fps step and policy inference: 4352 fps total: 4171 epoch: 559/20100
+fps step: 4334 fps step and policy inference: 4306 fps total: 4130 epoch: 560/20100
+fps step: 4429 fps step and policy inference: 4401 fps total: 4219 epoch: 561/20100
+fps step: 4412 fps step and policy inference: 4383 fps total: 4204 epoch: 562/20100
+fps step: 4160 fps step and policy inference: 4133 fps total: 3960 epoch: 563/20100
+fps step: 4118 fps step and policy inference: 4092 fps total: 3924 epoch: 564/20100
+fps step: 4187 fps step and policy inference: 4160 fps total: 3997 epoch: 565/20100
+fps step: 4396 fps step and policy inference: 4368 fps total: 4188 epoch: 566/20100
+fps step: 4407 fps step and policy inference: 4378 fps total: 4200 epoch: 567/20100
+fps step: 4414 fps step and policy inference: 4386 fps total: 4207 epoch: 568/20100
+fps step: 4426 fps step and policy inference: 4397 fps total: 4216 epoch: 569/20100
+fps step: 4440 fps step and policy inference: 4411 fps total: 4227 epoch: 570/20100
+fps step: 4321 fps step and policy inference: 4293 fps total: 4117 epoch: 571/20100
+fps step: 4435 fps step and policy inference: 4407 fps total: 4223 epoch: 572/20100
+fps step: 4434 fps step and policy inference: 4406 fps total: 4223 epoch: 573/20100
+fps step: 4417 fps step and policy inference: 4389 fps total: 4208 epoch: 574/20100
+fps step: 4346 fps step and policy inference: 4316 fps total: 4127 epoch: 575/20100
+fps step: 4328 fps step and policy inference: 4300 fps total: 4126 epoch: 576/20100
+saving next best rewards:  [966.66]
+=> saving checkpoint 'runs/baoding/baodingS1.0_C0.0_M0.02025-12-01_11-15-38-83810/nn/baoding.pth'
+fps step: 4403 fps step and policy inference: 4375 fps total: 4197 epoch: 577/20100
+fps step: 4338 fps step and policy inference: 4310 fps total: 4129 epoch: 578/20100
+fps step: 4349 fps step and policy inference: 4322 fps total: 4145 epoch: 579/20100
+fps step: 4427 fps step and policy inference: 4398 fps total: 4217 epoch: 580/20100
+fps step: 4400 fps step and policy inference: 4372 fps total: 4191 epoch: 581/20100
+fps step: 4403 fps step and policy inference: 4375 fps total: 4193 epoch: 582/20100
+fps step: 4425 fps step and policy inference: 4397 fps total: 4211 epoch: 583/20100
+fps step: 4400 fps step and policy inference: 4372 fps total: 4191 epoch: 584/20100
+fps step: 4308 fps step and policy inference: 4281 fps total: 4097 epoch: 585/20100
+fps step: 4202 fps step and policy inference: 4175 fps total: 4009 epoch: 586/20100
+fps step: 4436 fps step and policy inference: 4408 fps total: 4224 epoch: 587/20100
+fps step: 4428 fps step and policy inference: 4400 fps total: 4218 epoch: 588/20100
+fps step: 4409 fps step and policy inference: 4381 fps total: 4200 epoch: 589/20100
+fps step: 4439 fps step and policy inference: 4410 fps total: 4225 epoch: 590/20100
+fps step: 4455 fps step and policy inference: 4426 fps total: 4241 epoch: 591/20100
+fps step: 4386 fps step and policy inference: 4358 fps total: 4180 epoch: 592/20100
+fps step: 4467 fps step and policy inference: 4437 fps total: 4251 epoch: 593/20100
+fps step: 4429 fps step and policy inference: 4401 fps total: 4218 epoch: 594/20100
+fps step: 4454 fps step and policy inference: 4426 fps total: 4241 epoch: 595/20100
+fps step: 4475 fps step and policy inference: 4447 fps total: 4257 epoch: 596/20100
+fps step: 4454 fps step and policy inference: 4425 fps total: 4241 epoch: 597/20100
+fps step: 4377 fps step and policy inference: 4349 fps total: 4158 epoch: 598/20100
+fps step: 4200 fps step and policy inference: 4171 fps total: 3996 epoch: 599/20100
+fps step: 4444 fps step and policy inference: 4416 fps total: 4230 epoch: 600/20100
+=> saving checkpoint 'runs/baoding/baodingS1.0_C0.0_M0.02025-12-01_11-15-38-83810/nn/last_baoding_ep_600_rew_793.6248.pth'
+fps step: 4449 fps step and policy inference: 4420 fps total: 4221 epoch: 601/20100
+fps step: 4360 fps step and policy inference: 4332 fps total: 4155 epoch: 602/20100
+fps step: 4336 fps step and policy inference: 4306 fps total: 4133 epoch: 603/20100
+fps step: 4278 fps step and policy inference: 4249 fps total: 4079 epoch: 604/20100
+Traceback (most recent call last):
+  File "./isaacgymenvs/train.py", line 199, in <module>
+    launch_rlg_hydra()
+  File "/home/madhurthareja/miniconda3/envs/robosyn/lib/python3.8/site-packages/hydra/main.py", line 94, in decorated_main
+    _run_hydra(
+  File "/home/madhurthareja/miniconda3/envs/robosyn/lib/python3.8/site-packages/hydra/_internal/utils.py", line 394, in _run_hydra
+    _run_app(
+  File "/home/madhurthareja/miniconda3/envs/robosyn/lib/python3.8/site-packages/hydra/_internal/utils.py", line 457, in _run_app
+    run_and_report(
+  File "/home/madhurthareja/miniconda3/envs/robosyn/lib/python3.8/site-packages/hydra/_internal/utils.py", line 220, in run_and_report
+    return func()
+  File "/home/madhurthareja/miniconda3/envs/robosyn/lib/python3.8/site-packages/hydra/_internal/utils.py", line 458, in <lambda>
+    lambda: hydra.run(
+  File "/home/madhurthareja/miniconda3/envs/robosyn/lib/python3.8/site-packages/hydra/_internal/hydra.py", line 119, in run
+    ret = run_job(
+  File "/home/madhurthareja/miniconda3/envs/robosyn/lib/python3.8/site-packages/hydra/core/utils.py", line 186, in run_job
+    ret.return_value = task_function(task_cfg)
+  File "./isaacgymenvs/train.py", line 188, in launch_rlg_hydra
+    runner.run({
+  File "/home/madhurthareja/itachicmd/in-hand-rotation/rl_games/torch_runner.py", line 152, in run
+    self.run_train(args)
+  File "/home/madhurthareja/itachicmd/in-hand-rotation/rl_games/torch_runner.py", line 104, in run_train
+    agent.train()
+  File "/home/madhurthareja/itachicmd/in-hand-rotation/rl_games/common/a2c_common.py", line 1238, in train
+    step_time, play_time, update_time, sum_time, a_losses, c_losses, b_losses, entropies, kls, last_lr, lr_mul = self.train_epoch()
+  File "/home/madhurthareja/itachicmd/in-hand-rotation/rl_games/common/a2c_common.py", line 1100, in train_epoch
+    batch_dict = self.play_steps()
+  File "/home/madhurthareja/itachicmd/in-hand-rotation/rl_games/common/a2c_common.py", line 698, in play_steps
+    self.obs, rewards, self.dones, infos = self.env_step(res_dict['actions'])
+  File "/home/madhurthareja/itachicmd/in-hand-rotation/rl_games/common/a2c_common.py", line 505, in env_step
+    obs, rewards, dones, infos = self.vec_env.step(actions)
+  File "/home/madhurthareja/itachicmd/in-hand-rotation/isaacgymenvs/utils/rlgames_utils.py", line 156, in step
+    return self.env.step(actions)
+  File "/home/madhurthareja/itachicmd/in-hand-rotation/isaacgymenvs/tasks/base/vec_task.py", line 470, in step
+    self.post_physics_step()
+  File "/home/madhurthareja/itachicmd/in-hand-rotation/isaacgymenvs/tasks/allegro_arm_morb_axis.py", line 1911, in post_physics_step
+    self.compute_reward(self.actions)
+  File "/home/madhurthareja/itachicmd/in-hand-rotation/isaacgymenvs/tasks/allegro_arm_morb_axis.py", line 869, in compute_reward
+    last_dot = torch.tensor([torch.dot(zero_pos[i], last_relative_pos[i]).item() for i in range(zero_pos.shape[0])]).unsqueeze(1).to(self.device)
+  File "/home/madhurthareja/itachicmd/in-hand-rotation/isaacgymenvs/tasks/allegro_arm_morb_axis.py", line 869, in <listcomp>
+    last_dot = torch.tensor([torch.dot(zero_pos[i], last_relative_pos[i]).item() for i in range(zero_pos.shape[0])]).unsqueeze(1).to(self.device)
+KeyboardInterrupt
+Traceback (most recent call last):
+  File "./isaacgymenvs/train.py", line 199, in <module>
+    launch_rlg_hydra()
+  File "/home/madhurthareja/miniconda3/envs/robosyn/lib/python3.8/site-packages/hydra/main.py", line 94, in decorated_main
+    _run_hydra(
+  File "/home/madhurthareja/miniconda3/envs/robosyn/lib/python3.8/site-packages/hydra/_internal/utils.py", line 394, in _run_hydra
+    _run_app(
+  File "/home/madhurthareja/miniconda3/envs/robosyn/lib/python3.8/site-packages/hydra/_internal/utils.py", line 457, in _run_app
+    run_and_report(
+  File "/home/madhurthareja/miniconda3/envs/robosyn/lib/python3.8/site-packages/hydra/_internal/utils.py", line 220, in run_and_report
+    return func()
+  File "/home/madhurthareja/miniconda3/envs/robosyn/lib/python3.8/site-packages/hydra/_internal/utils.py", line 458, in <lambda>
+    lambda: hydra.run(
+  File "/home/madhurthareja/miniconda3/envs/robosyn/lib/python3.8/site-packages/hydra/_internal/hydra.py", line 119, in run
+    ret = run_job(
+  File "/home/madhurthareja/miniconda3/envs/robosyn/lib/python3.8/site-packages/hydra/core/utils.py", line 186, in run_job
+    ret.return_value = task_function(task_cfg)
+  File "./isaacgymenvs/train.py", line 188, in launch_rlg_hydra
+    runner.run({
+  File "/home/madhurthareja/itachicmd/in-hand-rotation/rl_games/torch_runner.py", line 152, in run
+    self.run_train(args)
+  File "/home/madhurthareja/itachicmd/in-hand-rotation/rl_games/torch_runner.py", line 104, in run_train
+    agent.train()
+  File "/home/madhurthareja/itachicmd/in-hand-rotation/rl_games/common/a2c_common.py", line 1238, in train
+    step_time, play_time, update_time, sum_time, a_losses, c_losses, b_losses, entropies, kls, last_lr, lr_mul = self.train_epoch()
+  File "/home/madhurthareja/itachicmd/in-hand-rotation/rl_games/common/a2c_common.py", line 1100, in train_epoch
+    batch_dict = self.play_steps()
+  File "/home/madhurthareja/itachicmd/in-hand-rotation/rl_games/common/a2c_common.py", line 698, in play_steps
+    self.obs, rewards, self.dones, infos = self.env_step(res_dict['actions'])
+  File "/home/madhurthareja/itachicmd/in-hand-rotation/rl_games/common/a2c_common.py", line 505, in env_step
+    obs, rewards, dones, infos = self.vec_env.step(actions)
+  File "/home/madhurthareja/itachicmd/in-hand-rotation/isaacgymenvs/utils/rlgames_utils.py", line 156, in step
+    return self.env.step(actions)
+  File "/home/madhurthareja/itachicmd/in-hand-rotation/isaacgymenvs/tasks/base/vec_task.py", line 470, in step
+    self.post_physics_step()
+  File "/home/madhurthareja/itachicmd/in-hand-rotation/isaacgymenvs/tasks/allegro_arm_morb_axis.py", line 1911, in post_physics_step
+    self.compute_reward(self.actions)
+  File "/home/madhurthareja/itachicmd/in-hand-rotation/isaacgymenvs/tasks/allegro_arm_morb_axis.py", line 869, in compute_reward
+    last_dot = torch.tensor([torch.dot(zero_pos[i], last_relative_pos[i]).item() for i in range(zero_pos.shape[0])]).unsqueeze(1).to(self.device)
+  File "/home/madhurthareja/itachicmd/in-hand-rotation/isaacgymenvs/tasks/allegro_arm_morb_axis.py", line 869, in <listcomp>
+    last_dot = torch.tensor([torch.dot(zero_pos[i], last_relative_pos[i]).item() for i in range(zero_pos.shape[0])]).unsqueeze(1).to(self.device)
+KeyboardInterrupt
